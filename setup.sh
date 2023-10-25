@@ -1,18 +1,21 @@
 #!/bin/bash
 
 # Parameter 1: abbreviation
-# Parameter 2: Docker image
-# Parameter 3: Docker container
-# Parameters 4 and 5: 1st guest port number and corresponding host port number
-# Parameters 6 and 7: 2nd guest port number and corresponding host port number
-# Parameters 8 and 9: 3rd . . . .
-# Parameters 10 and 11: . . . .
+# Parameter 2: suite
+# Parameter 3: Docker image
+# Parameter 4: Docker container
+# Parameters 5 and 6: 1st guest port number and corresponding host port number
+# Parameters 7 and 8: 2nd guest port number and corresponding host port number
+# Parameters 9 and 10: 3rd . . . .
+# Parameters 11 and 12: . . . .
 
 ############################################
 # BEGIN: setting environment variable inputs
 ############################################
 
 ABBREV=$1
+shift # $2 becomes the new $1, $3 becomes the new $2, etc.
+SUITE=$1
 shift # $2 becomes the new $1, $3 becomes the new $2, etc.
 DOCKER_IMAGE=$1
 shift # $2 becomes the new $1, $3 becomes the new $2, etc.
