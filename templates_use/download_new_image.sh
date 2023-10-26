@@ -21,4 +21,4 @@ wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-cont
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-images.sh | bash -s "$DOCKER_IMAGE"
 
 bash container_create.sh $DOCKER_IMAGE $DOCKER_CONTAINER
-bash container_start.sh $DOCKER_IMAGE $DOCKER_CONTAINER
+bash container_start.sh $DOCKER_CONTAINER
