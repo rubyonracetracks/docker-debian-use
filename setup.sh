@@ -146,7 +146,7 @@ echo '----------------------------' >> $WORK_SHARED/docker.txt
 #########################
 
 # Provide port numbers in shared/ports.txt file
-# Provide port numbers in copy_new.sh
+# Provide port numbers in container_create.sh
 echo '--------------------------------' > $WORK_SHARED/ports.txt
 echo 'PORT FORWARDING (Host -> Docker)' >> $WORK_SHARED/ports.txt
 
@@ -162,8 +162,8 @@ while [ $((i+1)) -le $((INDEX_LAST)) ]; do # If the number of port numbers is od
   i=$((i+2))
 done
 
-sed -i.bak "s/#PORT_SPECIFICATIONS_HERE/$PORT_STRING/g" $WORK_DIR/copy_new.sh
-rm $WORK_DIR/copy_new.sh.bak
+sed -i.bak "s/#PORT_SPECIFICATIONS_HERE/$PORT_STRING/g" $WORK_DIR/container_create.sh
+rm $WORK_DIR/container_create.sh.bak
 
 ############################
 # FINISHED: setting up ports
