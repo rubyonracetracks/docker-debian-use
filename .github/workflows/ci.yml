@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+  schedule:
+    - cron: '25 11 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ABBREV_MATRIX: ['min-stage1']
+        SUITE_MATRIX: ['bookworm', 'trixie', 'sid']
+    env:
+      ABBREV: ${{ matrix.ABBREV_MATRIX }}
+      SUITE: ${{ matrix.SUITE_MATRIX }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up the directories and scripts
+        run: bash ci.sh

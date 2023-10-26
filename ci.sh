@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DISTRO='debian'
+DOCKER_IMAGE="ghcr.io/$OWNER/docker-$DISTRO-$SUITE-$ABBREV"
+CONTAINER="container-$DISTRO-$SUITE-$ABBREV"
+
+bash setup.sh $ABBREV $SUITE $DOCKER_IMAGE $CONTAINER
