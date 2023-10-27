@@ -38,5 +38,5 @@ jobs:
         run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker ps -a | grep $CONTAINER
 
       - name: Start the Docker container and run the check script
-        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker start $CONTAINER
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker start $CONTAINER && docker exec -it '/usr/local/bin/check'
 
