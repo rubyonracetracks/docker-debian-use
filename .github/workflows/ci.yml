@@ -37,6 +37,6 @@ jobs:
       - name: pwd
         run: pwd
 
-      - name Start the Docker container
-        run: docker start -i $CONTAINER
+      # - name Start the Docker container
+      #  run: docker start -i $CONTAINER
 
