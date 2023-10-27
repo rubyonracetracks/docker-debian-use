@@ -32,4 +32,4 @@ jobs:
         run: bash setup.sh
 
       - name: Download the Docker image
-        run: cd tmp/$ABBREV/$SUITE && docker image pull $DOCKER_IMAGE
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker image pull $DOCKER_IMAGE
