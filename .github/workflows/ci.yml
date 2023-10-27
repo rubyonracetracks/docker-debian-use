@@ -32,4 +32,4 @@ jobs:
         run: bash setup.sh
 
       - name: Create the Docker container
-        run: cd tmp/$ABBREV/$SUITE && bash create_container.sh
+        run: cd tmp/$ABBREV/$SUITE && bash container_create.sh
