@@ -36,3 +36,4 @@ jobs:
 
       - name Start the Docker container
         run: docker start -i $CONTAINER
+
