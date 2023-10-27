@@ -1,10 +1,16 @@
 #!/bin/bash
 
-ABBREV='min-stage1'
-OWNER='rubyonracetracks'
-DISTRO='debian'
-SUITE='trixie'
-DOCKER_IMAGE="ghcr.io/$OWNER/docker-$DISTRO-$SUITE-$ABBREV"
-CONTAINER="container-$DISTRO-$SUITE-$ABBREV"
+# NOTE: set -o pipefail is needed to ensure that any error or failure causes the whole pipeline to fail.
+# Without this specification, the CI status will provide a false sense of security by showing builds
+# as succeeding in spite of errors or failures.
+set -eo pipefail
 
-bash setup.sh $ABBREV $SUITE $DOCKER_IMAGE $CONTAINER
+mkdir -p tmp
+
+# Parameter files
+echo 'min-stage1' > tmp/ABBREV.txt
+echo 'trixie' > tmp/SUITE.txt
+echo 'rubyonracetracks' > tmp/OWNER.txt
+echo 'debian' > tmp/DISTRO.txt
+
+bash setup.sh
