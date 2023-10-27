@@ -35,7 +35,7 @@ jobs:
         run: cd tmp/$ABBREV/$SUITE && bash container_create.sh
 
       - name: List Docker containers
-        run: source variables.sh && docker ps -a | grep $CONTAINER | awk '{print $1}'
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker ps -a | grep $CONTAINER | awk '{print $1}'
 
       - name: Start the Docker container and run the check script
         run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker exec -id $CONTAINER sh -c "/usr/local/bin/check"
