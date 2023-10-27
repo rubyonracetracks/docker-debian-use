@@ -1,28 +1,18 @@
 #!/bin/bash
 
-# Parameter 1: abbreviation
-# Parameter 2: suite
-# Parameter 3: Docker image
-# Parameter 4: Docker container
-# Parameters 5 and 6: 1st guest port number and corresponding host port number
-# Parameters 7 and 8: 2nd guest port number and corresponding host port number
-# Parameters 9 and 10: 3rd . . . .
+# NOTE: set -o pipefail is needed to ensure that any error or failure causes the whole pipeline to fail.
+# Without this specification, the CI status will provide a false sense of security by showing builds
+# as succeeding in spite of errors or failures.
+set -eo pipefail
+
+# Parameters 1 and 2: 1st guest port number and corresponding host port number
+# Parameters 3 and 4: 2nd guest port number and corresponding host port number
+# Parameters 5 and 6: 3rd . . . .
 # Parameters 11 and 12: . . . .
 
 ############################################
 # BEGIN: setting environment variable inputs
 ############################################
-
-ABBREV=$1
-shift # $2 becomes the new $1, $3 becomes the new $2, etc.
-SUITE=$1
-shift # $2 becomes the new $1, $3 becomes the new $2, etc.
-DOCKER_IMAGE=$1
-shift # $2 becomes the new $1, $3 becomes the new $2, etc.
-CONTAINER=$1
-shift # $2 becomes the new $1, $3 becomes the new $2, etc.
-
-# Remaining parameters are port numbers
 
 ARRAY_PORTS=() # NOTE: Always has an even number of elements
 i=0
@@ -41,6 +31,12 @@ done
 ###############################################
 # FINISHED: setting environment variable inputs
 ###############################################
+
+# Reading the variable values from the parameter files
+ABBREV=`cat tmp/ABBREV.txt`
+SUITE=`cat tmp/SUITE.txt`
+OWNER=`cat tmp/OWNER.txt`
+DISTRO=`cat tmp/DISTRO.txt`
 
 # Creating the necessary directories
 WORK_DIR="tmp/$ABBREV/$SUITE"
@@ -113,10 +109,13 @@ fi
 # Fill in DOCKER_IMAGE and CONTAINER parameters
 fill_in_params () {
   FILE_TO_UPDATE=$1
-  # NOTE: Using \ instead of / as delimiter in sed command
+  # NOTE: Using | as delimiter in sed command
+  sed -i.bak "s|<ABBREV>|$ABBREV|g" $FILE_TO_UPDATE
+  sed -i.bak "s|<SUITE>|$SUITE|g" $FILE_TO_UPDATE
+  sed -i.bak "s|<OWNER>|$OWNER|g" $FILE_TO_UPDATE
+  sed -i.bak "s|<DISTRO>|$DISTRO|g" $FILE_TO_UPDATE
   sed -i.bak "s|<DOCKER_IMAGE>|$DOCKER_IMAGE|g" $FILE_TO_UPDATE
   sed -i.bak "s|<CONTAINER>|$CONTAINER|g" $FILE_TO_UPDATE
-  sed -i.bak "s|<ABBREV>|$ABBREV|g" $FILE_TO_UPDATE
   rm $FILE_TO_UPDATE.bak
 }
 
@@ -125,12 +124,9 @@ do
   fill_in_params $FILE
 done
 
-for FILE in `ls $WORK_DIR/shared/*.sh`
-do
-  fill_in_params $FILE
-done
-
 # Provide Docker image and container names when running the info.sh script
+source $WORK_DIR/variables.sh
+echo "DOCKER_IMAGE: $DOCKER_IMAGE"
 echo '---------------------------' > $WORK_SHARED/docker.txt
 echo "Docker Image: $DOCKER_IMAGE" >> $WORK_SHARED/docker.txt
 echo '----------------------------' >> $WORK_SHARED/docker.txt

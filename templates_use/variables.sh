@@ -5,9 +5,9 @@
 # as succeeding in spite of errors or failures.
 set -eo pipefail
 
-source variables.sh
-
-wait
-echo '------------------------------------'
-echo "Starting Docker container $CONTAINER"
-docker start -i $CONTAINER
+ABBREV='<ABBREV>'
+SUITE='<SUITE>'
+OWNER='<OWNER>'
+DISTRO='<DISTRO>'
+DOCKER_IMAGE="ghcr.io/$OWNER/docker-$DISTRO-$SUITE-$ABBREV"
+CONTAINER="container-$DISTRO-$SUITE-$ABBREV"
