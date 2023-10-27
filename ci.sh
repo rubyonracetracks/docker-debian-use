@@ -16,7 +16,7 @@ echo 'debian' > tmp/DISTRO.txt
 pwd
 bash setup.sh
 wait
-cd $WORK_DIR
+cd "tmp/$ABBREV/$SUITE"
 wait
 pwd
 bash container_create.sh
