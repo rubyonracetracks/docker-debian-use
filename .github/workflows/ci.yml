@@ -38,5 +38,5 @@ jobs:
         run: pwd && ls -l
 
       - name: Start the Docker container
-        run: cd tmp/$ABBREV/$SUITE && source variables && docker start -i $CONTAINER
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker start -i $CONTAINER
 
