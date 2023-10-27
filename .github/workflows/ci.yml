@@ -35,5 +35,5 @@ jobs:
         run: cd tmp/$ABBREV/$SUITE && bash container_create.sh
 
       - name Start the Docker container
-        run: cd tmp/$ABBREV/$SUITE && source variables && docker start -i $CONTAINER
+        run: cd tmp/$ABBREV/$SUITE && source variables # && docker start -i $CONTAINER
 
