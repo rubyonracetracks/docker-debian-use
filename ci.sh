@@ -13,10 +13,12 @@ echo 'bookworm' > tmp/SUITE.txt
 echo 'rubyonracetracks' > tmp/OWNER.txt
 echo 'debian' > tmp/DISTRO.txt
 
+pwd
 bash setup.sh
 wait
 cd $WORK_DIR
 wait
+pwd
 bash container_create.sh
 wait
 docker exec -it $CONTAINER '/usr/local/bin/check'
