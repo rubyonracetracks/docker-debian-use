@@ -34,6 +34,9 @@ jobs:
       - name: Create the Docker container
         run: cd tmp/$ABBREV/$SUITE && bash container_create.sh
 
+      - name: pwd && ls -l
+        run: pwd && ls -l
+
       - name: Start the Docker container
         run: cd tmp/$ABBREV/$SUITE && source variables && docker start -i $CONTAINER
 
