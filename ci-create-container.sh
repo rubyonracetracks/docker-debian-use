@@ -12,15 +12,3 @@ echo "$ABBREV" > tmp/ABBREV.txt
 echo "$SUITE" > tmp/SUITE.txt
 echo "$OWNER" > tmp/OWNER.txt
 echo "$DISTRO" > tmp/DISTRO.txt
-
-bash setup.sh
-wait
-cd "tmp/$ABBREV/$SUITE"
-wait
-bash reset.sh
-# bash container_create.sh
-# wait
-# source variables.sh
-# wait
-# docker exec -it $CONTAINER '/usr/local/bin/check'
-
