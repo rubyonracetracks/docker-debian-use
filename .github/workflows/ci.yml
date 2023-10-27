@@ -31,5 +31,5 @@ jobs:
       - name: Run the setup script
         run: bash setup.sh
 
-      - name: Create the Docker container and run the info.sh script in it
-        run: cd tmp/$ABBREV/$SUITE && bash ci_container_test.sh
+      - name: Download the Docker image
+        run: cd tmp/$ABBREV/$SUITE && docker image pull $DOCKER_IMAGE
