@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+  schedule:
+    - cron: '25 11 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ABBREV_MATRIX: ['min-stage1']
+        SUITE_MATRIX: ['bookworm', 'trixie', 'sid']
+        OWNER_MATRIX: ['rubyonracetracks']
+        DISTRO_MATRIX: ['debian']
+    env:
+      ABBREV: ${{ matrix.ABBREV_MATRIX }}
+      SUITE: ${{ matrix.SUITE_MATRIX }}
+      OWNER: ${{ matrix.OWNER_MATRIX }}
+      DISTRO: ${{ matrix.DISTRO_MATRIX }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set the parameters
+        run: bash ci-parameters.sh
+
+      - name: Run the setup script
+        run: bash setup.sh
+
+      - name: Download the Docker image
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker image pull $DOCKER_IMAGE
+
+      - name: Test the Docker image
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker create -i -t -u='winner' $DOCKER_IMAGE '/usr/local/bin/check' 

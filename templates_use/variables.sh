@@ -5,12 +5,9 @@
 # as succeeding in spite of errors or failures.
 set -eo pipefail
 
-mkdir -p tmp
-
-# Parameter files
-echo 'min-stage1' > tmp/ABBREV.txt
-echo 'bookworm' > tmp/SUITE.txt
-echo 'rubyonracetracks' > tmp/OWNER.txt
-echo 'debian' > tmp/DISTRO.txt
-
-bash setup.sh
+ABBREV='<ABBREV>'
+SUITE='<SUITE>'
+OWNER='<OWNER>'
+DISTRO='<DISTRO>'
+DOCKER_IMAGE="ghcr.io/$OWNER/docker-$DISTRO-$SUITE-$ABBREV"
+CONTAINER="container-$DISTRO-$SUITE-$ABBREV"

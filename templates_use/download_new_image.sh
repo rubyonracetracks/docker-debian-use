@@ -1,7 +1,11 @@
 #!/bin/bash
 
-DOCKER_IMAGE='<DOCKER_IMAGE>'
-CONTAINER='<CONTAINER>'
+# NOTE: set -o pipefail is needed to ensure that any error or failure causes the whole pipeline to fail.
+# Without this specification, the CI status will provide a false sense of security by showing builds
+# as succeeding in spite of errors or failures.
+set -eo pipefail
+
+source variables.sh
 
 # Check for regular user login
 if [ ! $( id -u ) -ne 0 ]; then
@@ -20,4 +24,5 @@ read -p '************************' continue
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-containers.sh | bash -s "$CONTAINER"
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-images.sh | bash -s "$DOCKER_IMAGE"
 
-sh copy_new.sh $DOCKER_IMAGE $DOCKER_CONTAINER
+bash container_create.sh $DOCKER_IMAGE $DOCKER_CONTAINER
+bash container_start.sh $DOCKER_CONTAINER

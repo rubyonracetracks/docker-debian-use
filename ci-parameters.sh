@@ -8,9 +8,7 @@ set -eo pipefail
 mkdir -p tmp
 
 # Parameter files
-echo 'min-stage1' > tmp/ABBREV.txt
-echo 'bookworm' > tmp/SUITE.txt
-echo 'rubyonracetracks' > tmp/OWNER.txt
-echo 'debian' > tmp/DISTRO.txt
-
-bash setup.sh
+echo "$ABBREV" > tmp/ABBREV.txt
+echo "$SUITE" > tmp/SUITE.txt
+echo "$OWNER" > tmp/OWNER.txt
+echo "$DISTRO" > tmp/DISTRO.txt

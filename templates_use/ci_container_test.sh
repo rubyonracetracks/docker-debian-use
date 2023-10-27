@@ -5,12 +5,7 @@
 # as succeeding in spite of errors or failures.
 set -eo pipefail
 
-mkdir -p tmp
-
-# Parameter files
-echo 'min-stage1' > tmp/ABBREV.txt
-echo 'bookworm' > tmp/SUITE.txt
-echo 'rubyonracetracks' > tmp/OWNER.txt
-echo 'debian' > tmp/DISTRO.txt
-
-bash setup.sh
+bash container_create.sh
+bash container_start.sh
+source variables.sh
+docker exec -d $CONTAINER 'bash shared/info.sh'
