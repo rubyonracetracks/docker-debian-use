@@ -31,12 +31,5 @@ jobs:
       - name: Run the setup script
         run: bash setup.sh
 
-      - name: Create the Docker container
-        run: cd tmp/$ABBREV/$SUITE && bash container_create.sh
-
-      - name: List Docker containers
-        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker ps -a | grep $CONTAINER
-
-      - name: Start the Docker container and run the check script
-        run: cd tmp/$ABBREV/$SUITE && source variables.sh && bash container_create.sh && docker start $CONTAINER && docker exec -it $CONTAINER '/usr/local/bin/check'
-
+      - name: Create the Docker container and run the info.sh script in it
+        run: cd tmp/$ABBREV/$SUITE && bash ci_container_test.sh
