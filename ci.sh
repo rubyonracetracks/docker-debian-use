@@ -5,16 +5,19 @@
 # as succeeding in spite of errors or failures.
 set -eo pipefail
 
-DISTRO='debian'
-DOCKER_IMAGE="ghcr.io/$OWNER/docker-$DISTRO-$SUITE-$ABBREV"
-CONTAINER="container-$DISTRO-$SUITE-$ABBREV"
-WORK_DIR="tmp/$ABBREV/$SUITE"
+mkdir -p tmp
 
-bash setup.sh $ABBREV $SUITE $DOCKER_IMAGE $CONTAINER
+# Parameter files
+echo 'min-stage1' > tmp/ABBREV.txt
+echo 'bookworm' > tmp/SUITE.txt
+echo 'rubyonracetracks' > tmp/OWNER.txt
+echo 'debian' > tmp/DISTRO.txt
+
+bash setup.sh
 wait
 cd $WORK_DIR
 wait
-bash container_create.sh $DOCKER_IMAGE $CONTAINER
+bash container_create.sh
 wait
 docker exec -it $CONTAINER '/usr/local/bin/check'
 wait
