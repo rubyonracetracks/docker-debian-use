@@ -17,9 +17,10 @@ bash setup.sh
 wait
 cd "tmp/$ABBREV/$SUITE"
 wait
-bash container_create.sh
-wait
-source variables.sh
-wait
-docker exec -it $CONTAINER '/usr/local/bin/check'
-wait
+bash reset.sh
+# bash container_create.sh
+# wait
+# source variables.sh
+# wait
+# docker exec -it $CONTAINER '/usr/local/bin/check'
+
