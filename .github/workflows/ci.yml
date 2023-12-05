@@ -31,8 +31,11 @@ jobs:
       - name: Run the setup script
         run: bash setup.sh
 
-      - name: Download the Docker image
-        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker image pull $DOCKER_IMAGE
+      - name: Create the Docker container from the Docker image
+        run: cd tmp/$ABBREV/$SUITE && bash container_create.sh $DOCKER_IMAGE $CONTAINER
 
-      - name: Test the Docker image
-        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker create -i -t -u='winner' $DOCKER_IMAGE '/usr/local/bin/check' 
+      - name: Start the Docker container
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker start $CONTAINER
+
+      - name: Run /usr/local/bin/check in the Docker container
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker exec $CONTAINER /usr/local/bin/check
