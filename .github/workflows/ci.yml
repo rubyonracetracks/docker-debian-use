@@ -38,4 +38,4 @@ jobs:
         run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker start $CONTAINER
 
       - name: Run /usr/local/bin/check in the Docker container
-        run: cd tmp/$ABBREV/$SUITE && docker exec $CONTAINER /usr/local/bin/check
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker exec $CONTAINER /usr/local/bin/check
