@@ -35,4 +35,4 @@ jobs:
         run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker image pull $DOCKER_IMAGE
 
       - name: Test the Docker image
-        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker create -i -t -u='winner' $DOCKER_IMAGE '/usr/local/bin/check' 
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker create --attach -i -t -u='winner' $DOCKER_IMAGE '/usr/local/bin/check' 
