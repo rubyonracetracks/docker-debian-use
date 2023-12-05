@@ -34,5 +34,8 @@ jobs:
       - name: Create the Docker container from the Docker image
         run: cd tmp/$ABBREV/$SUITE && bash container_create.sh $DOCKER_IMAGE $CONTAINER
 
-      - name: Run the info script in the Docker container
-        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker start -a $CONTAINER
+      - name: Start the Docker container
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker start $CONTAINER
+
+      - name: Run /usr/local/bin/check in the Docker container
+        run cd tmp/$ABBREV/$SUITE && docker exec $CONTAINER /usr/local/bin/check
