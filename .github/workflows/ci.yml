@@ -32,4 +32,7 @@ jobs:
         run: bash setup.sh
 
       - name: Create the Docker container from the Docker image
-        run: cd tmp/$ABBREV/$SUITE && bash container_create.sh $DOCKER_IMAGE $DOCKER_CONTAINER
+        run: cd tmp/$ABBREV/$SUITE && bash container_create.sh $DOCKER_IMAGE $CONTAINER
+
+      - name: Run the info script in the Docker container
+        run: cd tmp/$ABBREV/$SUITE && source variables.sh && docker start -a $CONTAINER
