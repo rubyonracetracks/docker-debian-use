@@ -7,8 +7,5 @@ set -eo pipefail
 
 source variables.sh
 
-echo 'Starting Docker container'
-docker start "$CONTAINER"
-wait
 echo 'Executing /usr/local/bin/check in Docker container'
 docker exec "$CONTAINER" /usr/local/bin/check
