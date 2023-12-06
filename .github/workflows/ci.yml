@@ -41,4 +41,4 @@ jobs:
         run: cd tmp/$ABBREV/$SUITE && bash container-start.sh
 
       - name: Run /usr/local/bin/check in the Docker container
-        run: cd tmp/$ABBREV/$SUITE && bash ci-container-test.sh
+        run: cd tmp/$ABBREV/$SUITE && bash container-test.sh
