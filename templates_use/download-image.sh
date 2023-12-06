@@ -18,8 +18,13 @@ echo "If $DOCKER_IMAGE does not download, these are the likely reasons:"
 echo '1. It is not available.'
 echo '2. You have downstream images that depend on your current image.  Use the nuke.sh script to remove all local Docker images.'
 echo
-echo 'Press Enter to continue.'
-read -p '************************' continue
+
+# Bypass the "Press Enter to continue" part in CI mode
+if [ "$CI" -ne 'true' ]
+then
+  echo 'Press Enter to continue.'
+  read -p '************************' continue
+fi
 
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-containers.sh | bash -s "$CONTAINER"
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-images.sh | bash -s "$DOCKER_IMAGE"
