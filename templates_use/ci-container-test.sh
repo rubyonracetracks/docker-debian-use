@@ -8,4 +8,5 @@ set -eo pipefail
 source variables.sh
 
 docker start "$CONTAINER"
+wait
 docker exec "$CONTAINER" /usr/local/bin/check
