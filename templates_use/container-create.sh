@@ -7,7 +7,9 @@ set -eo pipefail
 
 source variables.sh
 
-is='echo "cat /home/`whoami`/login-times.txt"' # Initial script to run
+# NOTE: Without the "-l" flag, the default Ruby version is the one
+# installed with apt-get instead of the one installed with RVM.
+is='/bin/bash -l' # Initial script to run
 hs=$PWD/shared # Host machine shared directory
 ds='/home/winner/shared' # Docker shared directory
 
