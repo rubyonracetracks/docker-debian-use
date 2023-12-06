@@ -5,7 +5,7 @@
 # as succeeding in spite of errors or failures.
 set -eo pipefail
 
-bash container_create.sh
-bash container_start.sh
 source variables.sh
-docker exec -d $CONTAINER 'bash shared/info.sh'
+
+echo 'Executing /usr/local/bin/check in Docker container'
+docker exec "$CONTAINER" /usr/local/bin/check
