@@ -7,4 +7,5 @@ set -eo pipefail
 
 source variables.sh
 
+bash container-start.sh
 docker exec -d "$CONTAINER" /usr/local/bin/check

@@ -37,8 +37,5 @@ jobs:
       - name: Create the Docker container from the Docker image
         run: cd tmp/$ABBREV/$SUITE && bash container-create.sh
 
-      - name: Start the Docker container
-        run: cd tmp/$ABBREV/$SUITE && bash container-start.sh
-
       - name: Run /usr/local/bin/check in the Docker container
         run: cd tmp/$ABBREV/$SUITE && bash ci-container-test.sh
