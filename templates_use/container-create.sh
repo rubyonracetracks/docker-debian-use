@@ -7,6 +7,7 @@ set -eo pipefail
 
 source variables.sh
 
+is='echo "cat /home/`whoami`/login-times.txt"' # Initial script to run
 hs=$PWD/shared # Host machine shared directory
 ds='/home/winner/shared' # Docker shared directory
 
@@ -15,6 +16,6 @@ echo "Creating Docker container $CONTAINER from $DOCKER_IMAGE"
 docker create -i -t -u='winner' --name $CONTAINER \
   #PORT_SPECIFICATIONS_HERE \
   -e HOME=/home/winner -e USERNAME=winner \
-  -v $hs:$ds $DOCKER_IMAGE
+  -v $hs:$ds $DOCKER_IMAGE $is
 
 wait
