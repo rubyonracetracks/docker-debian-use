@@ -20,7 +20,7 @@ echo '2. You have downstream images that depend on your current image.  Use the 
 echo
 
 # Bypass the "Press Enter to continue" part in CI mode
-if [ "$CI" -ne 'true' ]
+if [[ "$CI" -ne 'true' ]]
 then
   echo 'Press Enter to continue.'
   read -p '************************' continue
