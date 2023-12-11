@@ -24,5 +24,6 @@ read -p '************************' continue
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-containers.sh | bash -s "$CONTAINER"
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-images.sh | bash -s "$DOCKER_IMAGE"
 
-bash container_create.sh $DOCKER_IMAGE $DOCKER_CONTAINER
-bash container_start.sh $DOCKER_CONTAINER
+bash download-image.sh
+bash container-create.sh
+bash container-start.sh
