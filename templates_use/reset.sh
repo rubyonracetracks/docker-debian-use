@@ -9,5 +9,5 @@ source variables.sh
 
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-containers.sh | bash -s "$CONTAINER"
 
-bash container_create.sh $DOCKER_IMAGE $CONTAINER
-bash container_start.sh $CONTAINER
+bash container-create.sh $DOCKER_IMAGE $CONTAINER
+bash container-start.sh $CONTAINER

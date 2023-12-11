@@ -27,3 +27,4 @@ wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-imag
 bash download-image.sh
 bash container-create.sh
 bash container-start.sh
+bash join.sh
