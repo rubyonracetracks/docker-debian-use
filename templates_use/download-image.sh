@@ -30,9 +30,9 @@ wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-cont
 wget -O - https://gitlab.com/rubyonracetracks/docker-common/raw/main/delete-images.sh | bash -s "$DOCKER_IMAGE"
 
 echo '---------------------------------------------'
-echo 'BEGIN: downloading Docker image $DOCKER_IMAGE'
+echo "BEGIN: downloading Docker image $DOCKER_IMAGE"
 echo '---------------------------------------------'
 docker pull "$DOCKER_IMAGE"
 echo '------------------------------------------------'
-echo 'FINISHED: downloading Docker image $DOCKER_IMAGE'
+echo "FINISHED: downloading Docker image $DOCKER_IMAGE"
 echo '------------------------------------------------'

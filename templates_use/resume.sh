@@ -22,8 +22,5 @@ echo 'simultaneously, changes in one container (outside of the shared folder) '
 echo 'do not propagate to the other.  Use the join.sh script for multi-shell '
 echo 'access to the same container.'
 echo
-echo '------------------------------------'
-echo "Starting Docker container $CONTAINER"
-wait
-docker start -i $CONTAINER
-
+bash container-start.sh
+bash join.sh
