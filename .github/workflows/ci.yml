@@ -23,7 +23,7 @@ jobs:
       DISTRO: ${{ matrix.DISTRO_MATRIX }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set the parameters
         run: bash ci-parameters.sh
